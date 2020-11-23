@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context=".addappointment"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+    android:background="@color/color4"
+android:gravity="center">
+
+<EditText
+    android:id="@+id/doctor_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Doctor name"
+    android:textColor="@color/namecolor"
+    android:textColorHint="@color/color1"
+    android:backgroundTint="@color/color1"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="20dp"/>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="20dp">
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textColor="@color/namecolor"
+        android:textSize="26sp" />
+
+    <Button
+        android:id="@+id/select_date_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Date"
+        android:background="@drawable/my_radial"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="20dp">
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        android:textColor="@color/namecolor"
+        android:textSize="26sp"/>
+
+    <Button
+        android:id="@+id/select_time_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Time"
+        android:background="@drawable/my_radial"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>
+
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/note"
+    android:hint="Add Note"
+    android:textColor="@color/namecolor"
+    android:textColorHint="@color/color1"
+    android:backgroundTint="@color/color1"
+    android:layout_marginVertical="20dp"
+    android:layout_marginHorizontal="20dp" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginTop="40dp">
+
+    <Button
+        android:id="@+id/add_appointment_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="50"
+        android:background="@color/success"
+        android:text="Add"
+        android:textColor="@color/namecolor" />
+
+    <Button
+        android:id="@+id/cancel_appiontment_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="50"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@color/namecolor"
+        android:background="#fff"
+        android:text="Cancel" />
+</LinearLayout>
+
+</LinearLayout>

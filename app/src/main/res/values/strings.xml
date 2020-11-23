@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Medicare</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="numberOfPills">2 Pills</string>
+
+</resources>

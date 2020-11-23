@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/drawer"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:fitsSystemWindows="true"
+    android:background="@color/color4"
+tools:context=".stock">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listviewstock"
+            />
+
+
+    </LinearLayout>
+    <!--        ADD HERE THE THING OF THE XML PAGE LOOKUP-->
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<com.google.android.material.navigation.NavigationView
+    android:id="@+id/nav_view"
+    app:headerLayout="@layout/header"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#2196Fb"
+    app:itemTextColor="@color/white"
+    app:itemIconTint="@color/white"
+    app:menu="@menu/drawermenu"
+    android:layout_gravity="start" />
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#2196F3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name ="white">#ffffff</color>
+    <color name ="darkgray">#6c6c6c</color>
+    <color name ="gradientcolor1">#329D9C</color>
+    <color name ="namecolor"> #205072</color>
+    <color name ="gradientcolor2">#7BE495</color>
+    <color name ="trademarkcolor">#56C596</color>
+    <color name ="color1">#2C6975</color>
+    <color name ="color2">#68B2A0</color>
+    <color name ="color3">#CDE0C9</color>
+    <color name ="color4">#E0ECDE</color>
+    <color name ="success">#7BE495</color>
+    <color name ="warning">#FFCF5C</color>
+    <color name ="error">#F75010</color>
+
+
+
+
+
+</resources>

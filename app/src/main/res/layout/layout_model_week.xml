@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color3"
+    android:layout_margin="4dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color4"
+
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/medicine"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Medcine Name"
+            android:textStyle="bold"
+            android:textColor="@color/namecolor"
+            android:textSize="22sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateweek"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:text="Date"
+                android:textColor="@color/namecolor"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/timeweek"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:text="Time"
+                android:textColor="@color/namecolor"
+
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/swallowweek"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:text="Swallow"
+                android:textColor="@color/namecolor"
+
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
