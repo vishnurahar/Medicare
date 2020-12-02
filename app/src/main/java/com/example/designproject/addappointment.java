@@ -1,7 +1,10 @@
 package com.example.designproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 public class addappointment extends AppCompatActivity implements View.OnClickListener{
+    private int notificationId = 2;
     Button select_date_btn, select_time_btn ,addappointment,cancelbutton;
     TextView tv_date, tv_time;
     EditText doctor, note;
@@ -93,6 +97,29 @@ public class addappointment extends AppCompatActivity implements View.OnClickLis
                         @Override
                         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                             tv_date.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                            Intent intent = new Intent(addappointment.this, AlarmReceiver.class);
+                            intent.putExtra("notificationId", notificationId);
+                            intent.putExtra("message", "Time to take some medicines");
+
+                            PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                                    addappointment.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT
+                            );
+
+                            AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+
+                            int timemonth = monthOfYear;
+                            int timeday = dayOfMonth;
+
+                            Calendar startTime = Calendar.getInstance();
+                            startTime.set(Calendar.MONTH, monthOfYear);
+                            startTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                            startTime.set(Calendar.SECOND, 0);
+                            long alarmStartTime = startTime.getTimeInMillis();
+
+                            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, pendingIntent);
+
+
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
@@ -106,6 +133,27 @@ public class addappointment extends AppCompatActivity implements View.OnClickLis
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                             tv_time.setText(hourOfDay + ":" + minute);
+
+                            Intent intent = new Intent(addappointment.this, AlarmReceiver.class);
+                            intent.putExtra("notificationId", notificationId);
+                            intent.putExtra("message", "Time to take some medicines");
+
+                            PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                                    addappointment.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT
+                            );
+
+                            AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+
+                            int timehour = hourOfDay;
+                            int timeminute = minute;
+
+                            Calendar startTime = Calendar.getInstance();
+                            startTime.set(Calendar.HOUR_OF_DAY, timehour);
+                            startTime.set(Calendar.MINUTE, timeminute);
+                            startTime.set(Calendar.SECOND, 0);
+                            long alarmStartTime = startTime.getTimeInMillis();
+
+                            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, pendingIntent);
                         }
                     }, mHour, mMinute, false);
             timePickerDialog.show();

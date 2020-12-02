@@ -1,20 +1,11 @@
 package com.example.designproject;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -24,9 +15,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import static maes.tech.intentanim.CustomIntent.customType;
 
 public class Nav_Page extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
     private ArrayList<NavItem> navItems;
 
     private ArrayList<String> showingmeds;
@@ -173,10 +172,7 @@ public class Nav_Page extends AppCompatActivity implements NavigationView.OnNavi
 
         });
     }
-//    public void changeItem(int position, String text) {
-//        navItems.get(position).changeText1(text);
-//        mAdapter.notifyItemChanged(position);
-//    }
+
     public void createdata() {
         navItems=new ArrayList<>();
         ArrayList<String> medicines= new ArrayList<>();
@@ -188,10 +184,8 @@ public class Nav_Page extends AppCompatActivity implements NavigationView.OnNavi
         timetwo=db.gettime2(login_id);
         timethree=db.gettime3(login_id);
 
-//        medids= db.getmedids(login_id);
-//        String notetemp="08:00";
         for(int i=0;i<medicines.size();i++){
-            if(timeone.get(i).equals("Time") == true ){
+            if(timeone.get(i).equals("Time")){
 
             }else{
                 NavItem d = new NavItem(medicines.get(i),timeone.get(i));
@@ -201,7 +195,7 @@ public class Nav_Page extends AppCompatActivity implements NavigationView.OnNavi
             }
         }
         for(int i=0;i<medicines.size();i++){
-            if(timetwo.get(i).equals("Time") == true ){
+            if(timetwo.get(i).equals("Time")){
 
             }else{
                 NavItem d = new NavItem(medicines.get(i),timetwo.get(i));
@@ -211,7 +205,7 @@ public class Nav_Page extends AppCompatActivity implements NavigationView.OnNavi
             }
         }
         for(int i=0;i<medicines.size();i++){
-            if(timethree.get(i).equals("Time") == true ){
+            if(timethree.get(i).equals("Time")){
 
             }else{
                 NavItem d = new NavItem(medicines.get(i),timethree.get(i));
@@ -252,7 +246,7 @@ public class Nav_Page extends AppCompatActivity implements NavigationView.OnNavi
         String check="❌";
         Boolean insert_report=db.insert_report(login_id,tickedmed,date,tickedmedtime,check);
 
-        if(insert_report==false){
+        if(!insert_report){
             Toast.makeText(getApplicationContext(),"Failed to add in report", Toast.LENGTH_SHORT).show();
         }
         else{
@@ -286,4 +280,5 @@ public class Nav_Page extends AppCompatActivity implements NavigationView.OnNavi
 
         });
     }
+
 }

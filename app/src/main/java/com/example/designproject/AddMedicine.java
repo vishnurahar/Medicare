@@ -1,29 +1,33 @@
 package com.example.designproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
+import android.annotation.TargetApi;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class AddMedicine extends AppCompatActivity implements View.OnClickListener {
     DatabaseHelper db;
+    private int notificationId = 1;
     EditText med_name ,noofpills;
     TextView quant, tv_time_1, tv_time_2, tv_time_3;
     Button addmed, button, select_time_1_btn, select_time_2_btn, select_time_3_btn;
@@ -63,6 +67,7 @@ public class AddMedicine extends AppCompatActivity implements View.OnClickListen
         tv_time_3 = (TextView)findViewById(R.id.tv_time_3);
         addmed =(Button) findViewById(R.id.addmed);
 
+
         select_time_1_btn = findViewById(R.id.select_time_1_btn);
         select_time_2_btn = findViewById(R.id.select_time_2_btn);
         select_time_3_btn = findViewById(R.id.select_time_3_btn);
@@ -77,9 +82,127 @@ public class AddMedicine extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        if(view == button){
-            openGallery();
+
+        if(view == select_time_1_btn){
+
+            final Calendar c = Calendar.getInstance();
+            mHour = c.get(Calendar.HOUR_OF_DAY);
+            mMinute = c.get(Calendar.MINUTE);
+
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                    new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                            tv_time_1.setText(getFormatedTime(hourOfDay, minute));
+
+                            Intent intent = new Intent(AddMedicine.this, AlarmReceiver.class);
+                            intent.putExtra("notificationId", notificationId);
+                            intent.putExtra("message", "Time to take some medicines");
+
+                            PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                                    AddMedicine.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT
+                            );
+
+                            AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+
+                            int time1hour = hourOfDay;
+                            int time1minute = minute;
+
+                            // Create time.
+                            Calendar startTime = Calendar.getInstance();
+                            startTime.set(Calendar.HOUR_OF_DAY, time1hour);
+                            startTime.set(Calendar.MINUTE, time1minute);
+                            startTime.set(Calendar.SECOND, 0);
+                            long alarmStartTime = startTime.getTimeInMillis();
+
+                            // Set Alarm
+                            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, pendingIntent);
+                        }
+                    }, mHour, mMinute, false);
+            timePickerDialog.show();
+
         }
+
+
+        if(view == select_time_2_btn){
+            final Calendar c = Calendar.getInstance();
+            mHour = c.get(Calendar.HOUR_OF_DAY);
+            mMinute = c.get(Calendar.MINUTE);
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                    new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                            tv_time_2.setText(getFormatedTime(hourOfDay, minute));
+
+                            Intent intent = new Intent(AddMedicine.this, AlarmReceiver.class);
+                            intent.putExtra("notificationId", notificationId);
+                            intent.putExtra("message", "Time to take some medicines");
+
+                            PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                                    AddMedicine.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT
+                            );
+
+                            AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+
+                            int time2hour = hourOfDay;
+                            int time2minute = minute;
+
+                            // Create time.
+                            Calendar startTime = Calendar.getInstance();
+                            startTime.set(Calendar.HOUR_OF_DAY, time2hour);
+                            startTime.set(Calendar.MINUTE, time2minute);
+                            startTime.set(Calendar.SECOND, 0);
+                            long alarmStartTime = startTime.getTimeInMillis();
+
+                            // Set Alarm
+                            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, pendingIntent);
+
+                        }
+                    }, mHour, mMinute, false);
+            timePickerDialog.show();
+
+
+        }
+
+
+        if(view == select_time_3_btn){
+            final Calendar c = Calendar.getInstance();
+            mHour = c.get(Calendar.HOUR_OF_DAY);
+            mMinute = c.get(Calendar.MINUTE);
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                    new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                            tv_time_3.setText(getFormatedTime(hourOfDay, minute));
+
+                            Intent intent = new Intent(AddMedicine.this, AlarmReceiver.class);
+                            intent.putExtra("notificationId", notificationId);
+                            intent.putExtra("message", "Time to take some medicines");
+
+                            PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                                    AddMedicine.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT
+                            );
+
+                            AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+
+                            int time3hour = hourOfDay;
+                            int time3minute = minute;
+
+                            // Create time.
+                            Calendar startTime = Calendar.getInstance();
+                            startTime.set(Calendar.HOUR_OF_DAY, time3hour);
+                            startTime.set(Calendar.MINUTE, time3minute);
+                            startTime.set(Calendar.SECOND, 0);
+                            long alarmStartTime = startTime.getTimeInMillis();
+
+                            // Set Alarm
+                            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, pendingIntent);
+                        }
+                    }, mHour, mMinute, false);
+            timePickerDialog.show();
+        }
+
 
         if(view == addmed){
             String s1=med_name.getText().toString();    // MEdicine Name
@@ -101,46 +224,9 @@ public class AddMedicine extends AppCompatActivity implements View.OnClickListen
                 startActivity(intent1);
             }
         }
-        if(view == select_time_1_btn){
-            final Calendar c = Calendar.getInstance();
-            mHour = c.get(Calendar.HOUR_OF_DAY);
-            mMinute = c.get(Calendar.MINUTE);
-            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                    new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                            tv_time_1.setText(hourOfDay + ":" + minute);
-                        }
-                    }, mHour, mMinute, false);
-            timePickerDialog.show();
-        }
-        if(view == select_time_2_btn){
-            final Calendar c = Calendar.getInstance();
-            mHour = c.get(Calendar.HOUR_OF_DAY);
-            mMinute = c.get(Calendar.MINUTE);
-            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                    new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                            tv_time_2.setText(hourOfDay + ":" + minute);
-                        }
-                    }, mHour, mMinute, false);
-            timePickerDialog.show();
-        }
-        if(view == select_time_3_btn){
-            final Calendar c = Calendar.getInstance();
-            mHour = c.get(Calendar.HOUR_OF_DAY);
-            mMinute = c.get(Calendar.MINUTE);
-            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                    new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                            tv_time_3.setText(hourOfDay + ":" + minute);
-                        }
-                    }, mHour, mMinute, false);
-            timePickerDialog.show();
-        }
     }
+
+
 
     private void openGallery(){
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
@@ -149,7 +235,7 @@ public class AddMedicine extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onActivityResult(int requestCode, int resultCode , Intent data){
         super.onActivityResult(requestCode,resultCode,data);
-        if(requestCode == RESULT_OK && requestCode ==PICK_IMAGE){
+        if(requestCode == RESULT_OK && requestCode == PICK_IMAGE){
             imageUri = data.getData();
 //            imageView.setImageURI(imageUri);
         }
@@ -169,7 +255,6 @@ public class AddMedicine extends AppCompatActivity implements View.OnClickListen
         }
         quantity = quantity - 1;
         displayQuantity(quantity);
-
     }
 
     @SuppressLint("SetTextI18n")
@@ -179,12 +264,39 @@ public class AddMedicine extends AppCompatActivity implements View.OnClickListen
         quantityTextView.setText("" + numberOfPills);
     }
 
-
-
     public void cancelmedicine(View view) {
         Intent intent=new Intent(getApplicationContext(),Nav_Page.class);
         intent.putExtra("ID", login_id);
         startActivity(intent);
+    }
+
+    public String getFormatedTime(int h, int m) {
+        final String OLD_FORMAT = "HH:mm";
+        final String NEW_FORMAT = "hh:mm a";
+
+        String oldDateString = h + ":" + m;
+        String newDateString = "";
+
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT, getCurrentLocale());
+            Date date = sdf.parse(oldDateString);
+            sdf.applyPattern(NEW_FORMAT);
+            newDateString = sdf.format(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return newDateString;
+    }
+
+    @TargetApi(Build.VERSION_CODES.N)
+    public Locale getCurrentLocale() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return getResources().getConfiguration().getLocales().get(0);
+        } else {
+            //noinspection deprecation
+            return getResources().getConfiguration().locale;
+        }
     }
 
 
